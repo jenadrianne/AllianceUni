@@ -66,8 +66,11 @@ c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\Alliance
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\Microsoft.AI.ServerTelemetryChannel.xml
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\Microsoft.AI.WindowsServer.xml
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\Microsoft.AI.Web.xml
-c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.csprojResolveAssemblyReference.cache
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.Migrations.InitialCreate.resources
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.Migrations.AddMiddleName.resources
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.Migrations.MigrationChanges.resources
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.csproj.GenerateResource.Cache
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.dll
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.pdb
-c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.Migrations.InitialCreate.resources
-c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.csproj.GenerateResource.Cache
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.csprojResolveAssemblyReference.cache
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.Migrations.studentChange.resources

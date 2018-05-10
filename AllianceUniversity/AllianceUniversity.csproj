@@ -158,6 +158,18 @@
     <Compile Include="Migrations\201805100509327_InitialCreate.Designer.cs">
       <DependentUpon>201805100509327_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805100552468_AddMiddleName.cs" />
+    <Compile Include="Migrations\201805100552468_AddMiddleName.Designer.cs">
+      <DependentUpon>201805100552468_AddMiddleName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805100619181_MigrationChanges.cs" />
+    <Compile Include="Migrations\201805100619181_MigrationChanges.Designer.cs">
+      <DependentUpon>201805100619181_MigrationChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805100719548_studentChange.cs" />
+    <Compile Include="Migrations\201805100719548_studentChange.Designer.cs">
+      <DependentUpon>201805100719548_studentChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\course.cs" />
     <Compile Include="Models\enrollment.cs" />
@@ -228,6 +240,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805100509327_InitialCreate.resx">
       <DependentUpon>201805100509327_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100552468_AddMiddleName.resx">
+      <DependentUpon>201805100552468_AddMiddleName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100619181_MigrationChanges.resx">
+      <DependentUpon>201805100619181_MigrationChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100719548_studentChange.resx">
+      <DependentUpon>201805100719548_studentChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

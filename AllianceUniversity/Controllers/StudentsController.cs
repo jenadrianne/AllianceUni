@@ -47,14 +47,23 @@ namespace AllianceUniversity.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,EnrollmentDate")] Students students)
+        public ActionResult Create([Bind(Include = "LastName,FirstName,EnrollmentDate")] Students students)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Students.Add(students);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Students.Add(students);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch
+            {
+                ModelState.AddModelError("", "Unable to save record!");
+            }
+             
+
 
             return View(students);
         }

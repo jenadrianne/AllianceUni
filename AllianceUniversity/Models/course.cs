@@ -11,7 +11,7 @@ namespace AllianceUniversity.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         
         public int CourseId { get; set; }
-        public int Title { get; set; }
+        public String Title { get; set; }
         public int Credits { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
