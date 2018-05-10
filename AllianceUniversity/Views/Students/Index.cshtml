@@ -1,4 +1,7 @@
-﻿@model IEnumerable<AllianceUniversity.Models.Students>
+﻿@model PagedList.IPagedList<AllianceUniversity.Models.Students>
+
+@using PagedList.Mvc;
+
 
 @{
     ViewBag.Title = "Index";
@@ -9,13 +12,20 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+    @using(Html.BeginForm()){
+        <p>
+            Find By Name : @Html.TextBox("searchString", ViewBag.Current as String)
+            <input type="submit" value="Search" />
+        </p>
+    }
 <table class="table">
     <tr>
         <th>
             @Html.ActionLink("LastName", "Index", new { sortOrder = ViewBag.NameSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name
         </th>
         <th>
             @Html.ActionLink("EnrollmentDate", "Index", new { sortOrder = ViewBag.DateSortParam })
@@ -43,3 +53,6 @@
 }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currenttFilter = ViewBag.CurrentFilter }))

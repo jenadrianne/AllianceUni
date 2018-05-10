@@ -74,3 +74,7 @@ c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\Alliance
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.pdb
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.csprojResolveAssemblyReference.cache
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.Migrations.studentChange.resources
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\PagedList.dll
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\PagedList.Mvc.dll
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\PagedList.xml
+c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\PagedList.Mvc.xml

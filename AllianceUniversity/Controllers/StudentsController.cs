@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AllianceUniversity.DAL;
 using AllianceUniversity.Models;
+using PagedList;
 
 namespace AllianceUniversity.Controllers
 {
@@ -16,13 +17,32 @@ namespace AllianceUniversity.Controllers
         private SchoolContext db = new SchoolContext();
 
         // GET: Students
-        public ActionResult Index(String sortOrder)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";
             var students = from s in db.Students
                            select s;
-            
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.Contains(searchString)
+                                            || s.FirstName.Contains(searchString)
+                                           );
+            }
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -35,7 +55,10 @@ namespace AllianceUniversity.Controllers
                     students = students.OrderBy(s => s.LastName);
                     break;
             }
-            return View(students.ToList());
+
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Students/Details/5
