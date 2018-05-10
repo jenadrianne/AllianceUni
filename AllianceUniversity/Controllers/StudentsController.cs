@@ -36,7 +36,7 @@ namespace AllianceUniversity.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            if (String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s => s.LastName.Contains(searchString)
                                             || s.FirstName.Contains(searchString)
