@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AllianceUniversity.DAL;
 using AllianceUniversity.Models;
+using AllianceUniversity.ViewModel;
 using PagedList;
 
 namespace AllianceUniversity.Controllers
@@ -46,7 +47,7 @@ namespace AllianceUniversity.Controllers
             switch (sortOrder)
             {
                 case "name_desc":
-                    students = students.OrderBy(s => s.LastName);
+                    students = students.OrderByDescending(s => s.LastName);
                     break;
                 case "Date":
                     students = students.OrderBy(s => s.EnrollmentDate);
@@ -56,7 +57,7 @@ namespace AllianceUniversity.Controllers
                     break;
             }
 
-            int pageSize = 2;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(students.ToPagedList(pageNumber, pageSize));
         }
@@ -120,6 +121,8 @@ namespace AllianceUniversity.Controllers
             {
                 return HttpNotFound();
             }
+
+            populateEnrolledCourse(students);
             return View(students);
         }
 
@@ -128,12 +131,15 @@ namespace AllianceUniversity.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,EnrollmentDate")] Students students)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,EnrollmentDate")] Students students, string[] selectedCourses)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(students).State = EntityState.Modified;
+                UpdateEnrollment(selectedCourses, students);
+                 
                 db.SaveChanges();
+              
                 return RedirectToAction("Index");
             }
             return View(students);
@@ -172,6 +178,63 @@ namespace AllianceUniversity.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void populateEnrolledCourse (Students student)
+        {
+            var allCourses = db.Course; 
+            var studentCourses = new HashSet<int>(student.Enrollments.Select(c => c.CourseId));
+            var viewModel = new List< EnrolledCourse > ();
+
+            foreach(var course in allCourses)
+            {
+                viewModel.Add(new EnrolledCourse
+                {
+                    CourseId = course.CourseId,
+                    Title = course.Title, 
+                    Enrolled = studentCourses.Contains(course.CourseId)
+                });
+            }
+
+            ViewBag.Courses = viewModel; 
+        }
+
+        private void UpdateEnrollment (string[] selectedCourses, Students studentToUpdate)
+        {
+            Students students = db.Students
+                                .Include(i => i.Enrollments)
+                                .SingleOrDefault(x => x.Id == studentToUpdate.Id);
+            studentToUpdate.Enrollments = students.Enrollments;
+
+            foreach (Course course in db.Course)
+            {
+                if (selectedCourses.Contains(course.CourseId.ToString()))
+                {
+                    var enrollment = studentToUpdate.Enrollments.Where(
+                        s => s.CourseId == course.CourseId).FirstOrDefault();
+
+                    if(enrollment == null)
+                    {
+                        studentToUpdate.Enrollments.Add(
+                            new Enrollment
+                            {
+                                CourseId = course.CourseId,
+                                StudentId = studentToUpdate.Id,
+                                Grade = null
+                            }
+                        );
+                    }
+                }else
+                {
+                    var enrollment = studentToUpdate.Enrollments.Where(
+                       s => s.CourseId == course.CourseId).FirstOrDefault();
+
+                    if (enrollment != null)
+                    {
+                        studentToUpdate.Enrollments.Remove(enrollment);
+                    }
+                }
+            }
         }
     }
 }

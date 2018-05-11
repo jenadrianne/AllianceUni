@@ -78,3 +78,4 @@ c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\Alliance
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\PagedList.Mvc.dll
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\PagedList.xml
 c:\users\owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\bin\PagedList.Mvc.xml
+C:\Users\Owner\documents\visual studio 2017\Projects\AllianceUniversity\AllianceUniversity\obj\Debug\AllianceUniversity.Migrations.enrollmentChanges.resources

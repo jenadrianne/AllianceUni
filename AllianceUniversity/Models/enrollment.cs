@@ -13,8 +13,6 @@ namespace AllianceUniversity.Models
 
     public class Enrollment
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-
         public int EnrollmentId { get; set; }
         public int CourseId { get; set; }
         public int StudentId { get; set; }

@@ -4,55 +4,78 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Student List";
 }
 
-<h2>Index</h2>
+<br />
+<div class="panel panel-default">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <div class="panel-heading">
+        <span class="h3">Student List</span>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success pull-right" })
+    </div>
 
-    @using(Html.BeginForm()){
-        <p>
-            Find By Name : @Html.TextBox("searchString", ViewBag.Current as String)
-            <input type="submit" value="Search" />
-        </p>
-    }
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("LastName", "Index", new { sortOrder = ViewBag.NameSortParam })
-        </th>
-        <th>
-            First Name
-        </th>
-        <th>
-            @Html.ActionLink("EnrollmentDate", "Index", new { sortOrder = ViewBag.DateSortParam })
-        </th>
-        <th></th>
-    </tr>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Find By Name : @Html.TextBox("searchString", ViewBag.Current as String)
+                <input type="submit" value="Search" />
+            </p>
+        }
+        <table class="table">
+            <tr>
+                <th>
+                    <center>
+                        @Html.ActionLink("LastName", "Index", new { sortOrder = ViewBag.NameSortParam })
+                    </center>
+                </th>
+                <th>
+                    <center>
+                        First Name
+                    </center>
+                </th>
+                <th>
+                    <center>
+                        @Html.ActionLink("EnrollmentDate", "Index", new { sortOrder = ViewBag.DateSortParam })
+                    </center>
+                </th>
+                <th></th>
+            </tr>
+            <br />
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </center>
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EnrollmentDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        </table>
 
-</table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currenttFilter = ViewBag.CurrentFilter }))
 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currenttFilter = ViewBag.CurrentFilter }))
+    </div>
+</div>
+
