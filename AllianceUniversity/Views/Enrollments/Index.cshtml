@@ -4,42 +4,65 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Course.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Student.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Grade)
-        </th>
-        <th></th>
-    </tr>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="h3">Index</span>
+        <span class="pull-right">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+        </span>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>
+                    <center>
+                        @Html.DisplayNameFor(model => model.Course.Title)
+                    </center>
+                </th>
+                <th>
+                    <center>
+                        @Html.DisplayNameFor(model => model.Student.LastName)
+                    </center>
+                </th>
+                <th>
+                    <center>
+                        @Html.DisplayNameFor(model => model.Grade)
+                    </center>
+                </th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Grade)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EnrollmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EnrollmentId })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.Course.Title)
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.Student.LastName)
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentId }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Details", "Details", new { id = item.EnrollmentId }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentId }, new { @class = "btn btn-danger" })
+                        </center>
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+
+    </div>
+</div>
+

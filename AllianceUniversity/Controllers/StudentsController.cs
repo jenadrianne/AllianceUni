@@ -231,7 +231,7 @@ namespace AllianceUniversity.Controllers
 
                     if (enrollment != null)
                     {
-                        studentToUpdate.Enrollments.Remove(enrollment);
+                        db.Enrollment.Remove(enrollment);
                     }
                 }
             }
